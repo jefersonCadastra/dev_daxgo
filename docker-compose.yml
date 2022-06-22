@@ -1,0 +1,56 @@
+version: '3.1'
+services:
+    #redis:
+        #image: 'redis:alpine'
+
+    mysql:
+        image: 'mysql:5.7'
+        working_dir: /application
+        volumes:
+            - '.:/application'
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_DATABASE=daxgo
+            - MYSQL_USER=daxgo
+            - MYSQL_PASSWORD=daxgo
+        ports:
+            - '9002:3306'
+        networks:
+        - mynetwork
+    
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        container_name: "phpmyadmin-daxgo"
+        ports:
+        - 8080:80
+        environment:
+        - PMA_ARBITRARY=1
+        - PMA_HOST=mysql
+        - PMA_USER=root
+        - PMA_PASSWORD=root
+        links:
+        - mysql
+        restart: always
+        networks:
+        - mynetwork
+
+    webserver:
+        image: 'nginx:alpine'
+        working_dir: /application
+        volumes:
+            - '.:/application'
+            - './docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf'
+        ports:
+            - '9000:80'
+
+    php-fpm:
+        build: docker/php-fpm
+        working_dir: /application
+        volumes:
+            - '.:/application'
+            - './docker/php-fpm/php-ini-overrides.ini:/etc/php/7.4/fpm/conf.d/99-overrides.ini'
+
+networks:
+    mynetwork:
+        driver: bridge    
+   
