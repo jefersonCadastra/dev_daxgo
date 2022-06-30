@@ -5,9 +5,8 @@
     <div class="col-4"></div>
 
     <div class="col-4">
-        <form method="POST" action="/login/gerahash">
+        <form method="POST" action="{{ url('/login/gerahash') }}">
             @csrf
-            @method('POST')
             <div class="form-group">
                 <label for="hash">Senha</label>
                 <input type="text" class="form-control" id="hash" name="hash">

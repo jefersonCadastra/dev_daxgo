@@ -1,14 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-use App\Http\Controllers\WizardCadastroControler;
-use App\Http\Controllers\ClienteController;
-use App\Http\Controllers\MetaController;
-use App\Http\Middleware\Auth\usuarioMiddleware;
-
-//Auth
-use App\Http\Controllers\Auth\LoginControler;
+use App\Http\Controllers\Auth\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,8 +15,12 @@ use App\Http\Controllers\Auth\LoginControler;
 */
 
 //Login
-Route::get('/login', [LoginControler::class, 'indexAction']);
-Route::get('/login/logout', [LoginControler::class, 'logoutAction']);
-Route::post('/login/authenticate', [LoginControler::class, 'authenticateAction']);
-Route::get('/login/gerahash', [LoginControler::class, 'geraHashAction']);
-Route::post('/login/gerahash', [LoginControler::class, 'geraHashAction']);
+Route::get('/login', [AuthController::class, 'index']);
+
+Route::post('/login', [AuthController::class, 'login']);
+
+Route::get('/gerahash', [AuthController::class, 'geraHash']);
+
+Route::post('/gerahash', [AuthController::class, 'geraHash']);
+
+Route::get('/logout', [AuthController::class, 'logout']);

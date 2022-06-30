@@ -2,13 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\WizardCadastroControler;
-use App\Http\Controllers\ClienteController;
-use App\Http\Controllers\MetaController;
-use App\Http\Middleware\Auth\usuarioMiddleware;
-
-//Auth
-use App\Http\Controllers\Auth\LoginControler;
+use App\Http\Controllers\Painel\{
+    WizardCadastroControler,
+    ClienteController,
+    MetaController,
+    VisitaController,
+    VisitaDetalheController
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -21,39 +21,22 @@ use App\Http\Controllers\Auth\LoginControler;
 |
 */
 
-Route::middleware([usuarioMiddleware::class])->group(function () {
+Route::middleware(['user.auth'])->group(function () {
 
-    //Route::get('/', [LoginControler::class, 'loginAction']);
-    Route::get('/wizard', [WizardCadastroControler::class, 'wizardAction']);
+    // Wizard
+    Route::get('/wizard', [WizardCadastroControler::class, 'index']);
 
-    //Clientes
-    Route::post('/cliente/novo', [ClienteController::class, 'novoAction']);
-    Route::post('/cliente/insert', [ClienteController::class, 'insertAction']);
-    Route::put('/cliente/update', [ClienteController::class, 'updateAction']);
-    Route::delete('/cliente/delete', [ClienteController::class, 'deleteAction']);
+    // Clientes
+    Route::resource('clientes', ClienteController::class)->names('clientes');
 
     //Metas
-    Route::get('/meta/novo', [MetaController::class, 'novoAction']);
-    Route::post('/meta/insert', [MetaController::class, 'insertAction']);
-    Route::put('/meta/update', [MetaController::class, 'updateAction']);
-    Route::get('/meta/delete/{id}', [MetaController::class, 'deleteAction']);
+    Route::resource('metas', MetaController::class)->names('metas');
 
     //Visitas
-    Route::get('/visita/novo', [VisitaController::class, 'novoAction']);
-    Route::post('/visita/insert', [VisitaController::class, 'insertAction']);
-    Route::put('/visita/update', [VisitaController::class, 'updateAction']);
-    Route::delete('/visita/delete', [VisitaController::class, 'deleteAction']);
-
-    //Visita Detalhe
-    Route::get('/visitadetalhe/novo', [VisitaDetalheController::class, 'novoAction']);
-    Route::post('/visitadetalhe/insert', [VisitaDetalheController::class, 'insertAction']);
-    Route::put('/visitadetalhe/update', [VisitaDetalheController::class, 'updateAction']);
-    Route::delete('/visitadetalhe/delete', [VisitaDetalheController::class, 'deleteAction']);
+    Route::resource('visitas', VisitaController::class)->names('visitas');
 });
 
 
 
 //Teste do sistema
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view('/', 'welcome');

@@ -8,6 +8,7 @@ services:
         working_dir: /application
         volumes:
             - '.:/application'
+            - ./docker/mysql:/var/lib/mysql
         environment:
             - MYSQL_ROOT_PASSWORD=root
             - MYSQL_DATABASE=daxgo
@@ -17,7 +18,7 @@ services:
             - '9002:3306'
         networks:
         - mynetwork
-    
+
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
         container_name: "phpmyadmin-daxgo"
@@ -56,5 +57,5 @@ services:
 
 networks:
     mynetwork:
-        driver: bridge    
-   
+        driver: bridge
+

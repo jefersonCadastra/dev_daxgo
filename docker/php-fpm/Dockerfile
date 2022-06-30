@@ -1,12 +1,35 @@
-FROM phpdockerio/php:7.4-fpm
-WORKDIR "/application"
+FROM php:7.4-fpm
 
-RUN apt-get update; \
-    apt-get -y --no-install-recommends install \
-        -- php7.4-memcached \ 
-        php7.4-mysql \ 
-        -- php7.4-redis \ 
-        php7.4-soap \ 
-        php7.4-xdebug; \
-    apt-get clean; \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
+RUN apt-get update -y && apt-get install -y libwebp-dev libjpeg62-turbo-dev libpng-dev libxpm-dev \
+    libfreetype6-dev
+RUN apt-get update && \
+    apt-get install -y \
+    zlib1g-dev \
+    libonig-dev \
+    libcurl4-openssl-dev \
+    libzip-dev \
+    libpq-dev \
+    libxml2-dev
+
+RUN docker-php-ext-install \
+    mysqli \
+    pdo \
+    pdo_mysql \
+    simplexml \
+    opcache \
+    xml \
+    mbstring \
+    curl \
+    zip
+
+RUN pecl install xdebug \
+    && docker-php-ext-enable xdebug
+
+RUN apt-get update && apt-get install -y libmagickwand-dev --no-install-recommends && rm -rf /var/lib/apt/lists/*
+RUN printf "\n" | pecl install imagick
+RUN docker-php-ext-enable imagick
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+EXPOSE 9000
+WORKDIR "/application"
