@@ -1,11 +1,12 @@
-@extends('layout/layout')
-@section('conteudo')
+@extends('layouts.app')
+
+@section('content')
 <div class="row" style="margin-top: 30px;">
 
     <div class="col-4"></div>
 
     <div class="col-4">
-        <form method="POST" action="{{ url('/login/gerahash') }}">
+        <form method="POST" action="{{ url('gera-hash') }}">
             @csrf
             <div class="form-group">
                 <label for="hash">Senha</label>
@@ -28,4 +29,4 @@
 
     </div>
 </div>
-@stop
+@endsection

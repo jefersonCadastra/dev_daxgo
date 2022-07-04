@@ -2,12 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\HomeController;
+
 use App\Http\Controllers\Painel\{
-    WizardCadastroControler,
-    ClienteController,
-    MetaController,
-    VisitaController,
-    VisitaDetalheController
+    WizardController,
+    GoalController,
+    TenantController,
+    VisitController,
 };
 
 /*
@@ -21,22 +22,21 @@ use App\Http\Controllers\Painel\{
 |
 */
 
-Route::middleware(['user.auth'])->group(function () {
+Route::middleware('auth')->group(function () {
 
     // Wizard
-    Route::get('/wizard', [WizardCadastroControler::class, 'index']);
+    Route::get('/wizard', [WizardController::class, 'index']);
 
     // Clientes
-    Route::resource('clientes', ClienteController::class)->names('clientes');
+    Route::resource('tenants', TenantController::class);
 
     //Metas
-    Route::resource('metas', MetaController::class)->names('metas');
+    Route::resource('goals', GoalController::class);
 
     //Visitas
-    Route::resource('visitas', VisitaController::class)->names('visitas');
+    Route::resource('visits', VisitController::class);
 });
 
-
-
-//Teste do sistema
 Route::view('/', 'welcome');
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');

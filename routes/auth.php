@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 
@@ -14,13 +15,9 @@ use App\Http\Controllers\Auth\AuthController;
 |
 */
 
-//Login
-Route::get('/login', [AuthController::class, 'index']);
+// Auth Routes
+Auth::routes();
 
-Route::post('/login', [AuthController::class, 'login']);
+Route::get('/gera-hash', [AuthController::class, 'geraHash']);
 
-Route::get('/gerahash', [AuthController::class, 'geraHash']);
-
-Route::post('/gerahash', [AuthController::class, 'geraHash']);
-
-Route::get('/logout', [AuthController::class, 'logout']);
+Route::post('/gera-hash', [AuthController::class, 'geraHash']);

@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 -- Estrutura da tabela `clientes`
 --
 
-CREATE TABLE `clientes` IF NOT EXISTS (
+CREATE TABLE `clientes` (
   `id` int(9) NOT NULL,
   `nome` varchar(50) NOT NULL,
   `email` varchar(100) NOT NULL,
@@ -47,7 +47,7 @@ INSERT INTO `clientes` (`id`, `nome`, `email`, `account_ga`) VALUES
 -- Estrutura da tabela `dias_comportamento`
 --
 
-CREATE TABLE `dias_comportamento` IF NOT EXISTS (
+CREATE TABLE `dias_comportamento` (
   `id` int(11) NOT NULL,
   `id_cliente` int(9) NOT NULL,
   `data` date NOT NULL,
@@ -60,7 +60,7 @@ CREATE TABLE `dias_comportamento` IF NOT EXISTS (
 -- Estrutura da tabela `medias_performance`
 --
 
-CREATE TABLE `medias_performance` IF NOT EXISTS (
+CREATE TABLE `medias_performance` (
   `id` int(11) NOT NULL,
   `dia_semana` int(1) NOT NULL COMMENT 'Dia da semana obedecendo o seguinte padrão da documentação do PHP: N - The ISO-8601 numeric representation of a day (1 for Monday, 7 for Sunday)',
   `media` double(8,2) NOT NULL,
@@ -73,7 +73,7 @@ CREATE TABLE `medias_performance` IF NOT EXISTS (
 -- Estrutura da tabela `metas`
 --
 
-CREATE TABLE `metas` IF NOT EXISTS (
+CREATE TABLE `metas` (
   `id` int(9) NOT NULL,
   `nome` varchar(50) NOT NULL,
   `mes` int(2) NOT NULL,
@@ -102,7 +102,7 @@ INSERT INTO `metas` (`id`, `nome`, `mes`, `ano`, `valor`, `id_cliente`) VALUES
 -- Estrutura da tabela `migrations`
 --
 
-CREATE TABLE `migrations` IF NOT EXISTS (
+CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL
@@ -114,7 +114,7 @@ CREATE TABLE `migrations` IF NOT EXISTS (
 -- Estrutura da tabela `origens_visitas`
 --
 
-CREATE TABLE `origens_visitas` IF NOT EXISTS (
+CREATE TABLE `origens_visitas` (
   `id` int(9) NOT NULL,
   `id_cliente` int(9) NOT NULL,
   `descricao` varchar(50) NOT NULL
@@ -126,7 +126,7 @@ CREATE TABLE `origens_visitas` IF NOT EXISTS (
 -- Estrutura da tabela `usuarios`
 --
 
-CREATE TABLE `usuarios` IF NOT EXISTS (
+CREATE TABLE `usuarios` (
   `id` int(9) NOT NULL,
   `id_cliente` int(9) NOT NULL,
   `email` varchar(100) NOT NULL,
@@ -147,7 +147,7 @@ INSERT INTO `usuarios` (`id`, `id_cliente`, `email`, `password`, `nome`) VALUES
 -- Estrutura da tabela `visitas`
 --
 
-CREATE TABLE `visitas` IF NOT EXISTS (
+CREATE TABLE `visitas` (
   `id` int(9) NOT NULL,
   `id_cliente` int(9) NOT NULL,
   `quantidade` double(14,2) NOT NULL,
@@ -161,7 +161,7 @@ CREATE TABLE `visitas` IF NOT EXISTS (
 -- Estrutura da tabela `visitas_detalhe`
 --
 
-CREATE TABLE `visitas_detalhe` IF NOT EXISTS (
+CREATE TABLE `visitas_detalhe` (
   `id` int(9) NOT NULL,
   `id_visita` int(9) NOT NULL,
   `quantidade` double(14,2) NOT NULL,
