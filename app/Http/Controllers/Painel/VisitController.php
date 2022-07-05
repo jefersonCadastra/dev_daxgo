@@ -4,23 +4,23 @@ namespace App\Http\Controllers\Painel;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\VisitRequest;
+use App\Services\VisitService;
 use Illuminate\Http\Request;
-use App\Models\Visit;
 
 class VisitController extends Controller
 {
-    private Visit $visit;
+    private VisitService $visitService;
 
     /**
-     * Instance of Visit visit
+     * Instance of VisitController
      *
-     * @param Visit $visit
+     * @param VisitService $visitService
      *
      * @return void
      */
-    public function __construct(Visit $visit)
+    public function __construct(VisitService $visitService)
     {
-        $this->visit = $visit;
+        $this->visitService = $visitService;
     }
 
     /**
@@ -30,7 +30,7 @@ class VisitController extends Controller
      */
     public function index()
     {
-        $visits = $this->visit->all();
+        $visits = $this->visitService->all();
 
         dd($visits);
     }
@@ -53,8 +53,7 @@ class VisitController extends Controller
      */
     public function store(VisitRequest $request)
     {
-        $this->visit
-                ->create($request->all());
+        $this->visitService->create($request->all());
 
         return back();
     }
@@ -90,9 +89,7 @@ class VisitController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->visit
-                ->find($id)
-                ->update($request->all());
+        $this->visitService->update($request->all(), $id);
     }
 
     /**
@@ -103,9 +100,7 @@ class VisitController extends Controller
      */
     public function destroy($id)
     {
-        $this->visit
-                ->find($id)
-                ->delete();
+        $this->visitService->delete($id);
 
         return back();
     }

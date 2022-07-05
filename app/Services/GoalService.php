@@ -9,15 +9,8 @@ class GoalService
 {
 
   private Goal $goal;
-  private $analytics;
+  private Analytics $analytics;
 
-  /**
-   * Instance of Goal goal
-   *
-   * @param Goal $goal
-   *
-   * @return void
-   */
   public function __construct(Goal $goal)
   {
     $this->goal = $goal;
@@ -26,9 +19,7 @@ class GoalService
 
   public function all()
   {
-    $goals = $this->goal->all();
-
-    return $goals;
+    return $this->goal->all();
   }
 
   public function findByYearMonth($year, $month)
@@ -36,16 +27,18 @@ class GoalService
     return $this->goal->findByYearMonth($year, $month)->get();
   }
 
-  public function create($params)
+  public function create($data)
   {
-    $this->goal
-      ->create($params);
+    return $this->goal->create($data);
   }
 
-  public function destroy($id)
+  public function update($data, $id)
   {
-    $this->goal
-      ->find($id)
-      ->delete();
+    return $this->goal->find($id)->update($data);
+  }
+
+  public function delete($id)
+  {
+    return $this->goal->find($id)->delete();
   }
 }
