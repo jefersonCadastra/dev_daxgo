@@ -16,4 +16,9 @@ class Goal extends Model
     {
         return $this->belongsTo(Tenant::class);
     }
+
+    public function findByYearMonth($year, $month)
+    {
+        return $this->where("year", $year)->where("month", $month);
+    }
 }

@@ -6,21 +6,22 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\GoalRequest;
 use App\Models\Goal;
 use Illuminate\Http\Request;
+use App\Services\GoalService;
 
 class GoalController extends Controller
 {
-    private Goal $goal;
+    private GoalService $goalService;
 
     /**
-     * Instance of Goal goal
+     * Instance of GoalService goalService
      *
-     * @param Goal $goal
+     * @param GoalService $goalService
      *
      * @return void
      */
-    public function __construct(Goal $goal)
+    public function __construct(GoalService $goalService)
     {
-        $this->goal = $goal;
+        $this->goalService = $goalService;
     }
 
     /**
@@ -30,7 +31,7 @@ class GoalController extends Controller
      */
     public function index()
     {
-        $goals = $this->goal->all();
+        $goals = $this->goalService->all();
 
         return view('painel.goals.index', compact('goals'));
     }
@@ -53,8 +54,8 @@ class GoalController extends Controller
      */
     public function store(GoalRequest $request)
     {
-        $this->goal
-                ->create($request->all());
+        $this->goalService
+            ->create($request->all());
 
         return back();
     }
@@ -91,8 +92,8 @@ class GoalController extends Controller
     public function update(Request $request, $id)
     {
         $this->goal
-                ->find($id)
-                ->update($request->all());
+            ->find($id)
+            ->update($request->all());
 
         return back();
     }
@@ -105,9 +106,8 @@ class GoalController extends Controller
      */
     public function destroy($id)
     {
-        $this->goal
-                ->find($id)
-                ->delete();
+        $this->goalService
+            ->destroy($id);
 
         return back();
     }
