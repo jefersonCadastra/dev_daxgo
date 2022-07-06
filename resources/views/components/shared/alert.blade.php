@@ -15,7 +15,7 @@
 @endif
 
 <!-- Return Error With Message -->
-@if (session('error'))
+@if (session()->has('error'))
     <div class="alert alert-danger d-flex align-items-start justify-content-center mb-3" role="alert">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
             class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img"
@@ -31,7 +31,7 @@
 @endif
 
 <!-- Return Succes Message -->
-@if (session('success'))
+@if (session()->has('success'))
     <div class="alert alert-success d-flex align-items-start justify-content-center mb-3" role="alert">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
             class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img"

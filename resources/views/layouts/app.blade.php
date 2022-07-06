@@ -18,8 +18,6 @@
     <x-layouts.navbar />
 
     <main>
-        <x-shared.alert />
-
         @yield('content')
     </main>
 
