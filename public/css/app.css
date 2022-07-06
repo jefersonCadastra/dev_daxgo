@@ -10296,3 +10296,8 @@ nav h2, nav .h2 {
 .form-group {
   margin-top: 20px;
 }
+
+.dropdown-item.active, .dropdown-item:active {
+  color: #212529;
+  background-color: #ffc107;
+}
