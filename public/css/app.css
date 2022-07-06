@@ -10256,43 +10256,72 @@ textarea.form-control-lg {
   font-family: "Roboto", sans-serif;
 }
 
+body {
+  height: 100%;
+}
+
+html, body {
+  height: 100% !important;
+}
+
+input {
+  box-shadow: none !important;
+  outline: none !important;
+  border: 1px solid #d9d9d9 !important;
+}
+
 nav {
   background: rgb(39, 39, 39);
   padding: 10px;
 }
 
-nav h2, nav .h2 {
-  color: #fff;
+.center-login {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #f5f5f5;
 }
 
-.content {
-  margin-top: 30px;
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
 }
 
-.content .card {
-  padding: 20px 20px 5px 20px;
+.form-signin img.login {
+  margin-bottom: 50px;
 }
 
-.content .col-2 {
-  margin-right: 0px;
+.form-signin .form-floating:focus-within {
+  z-index: 2;
 }
 
-.content .row {
-  padding: 0;
+.form-signin input[type=email] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
 }
 
-.content .row.first {
-  margin-top: 30px;
+.form-signin input[type=password] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
 
-.content .left {
-  text-align: right;
+.form-signin button {
+  outline: none !important;
+  width: 100%;
+  background: #00015c !important;
+  border: 1px solid transparent;
+  font-size: 18px;
 }
 
-.content h3, .content .h3 {
-  margin-top: 30px;
+.form-signin button:focus {
+  outline: none !important;
 }
 
-.form-group {
-  margin-top: 20px;
+.form-signin button:hover {
+  border: 1px solid transparent;
+  background: #000272 !important;
 }
