@@ -11,7 +11,7 @@ class TenantController extends Controller
     private Tenant $tenant;
 
     /**
-     * Instance of Tenant tenant
+     * Instance of Tenant $tenant
      *
      * @param Tenant $tenant
      *

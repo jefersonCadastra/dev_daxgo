@@ -3,20 +3,30 @@
 namespace App\Http\Controllers\Painel;
 
 use App\Http\Controllers\Controller;
-use App\Models\Tenant;
-use Illuminate\Support\Str;
-use Faker\Generator as Faker;
+use App\Services\WizardService;
+use Illuminate\Http\Request;
 
 class WizardController extends Controller
 {
-    public function index(Faker $faker, Tenant $tenant)
-    {
-        $tenant->create([
-            'name'  => $faker->name(),
-            'email' => $faker->email(),
-            'account_ga' => Str::random(30),
-        ]);
+    private $wizardService;
 
-        return view('painel.wizard.index');
+    public function __construct(WizardService $wizardService)
+    {
+        $this->wizardService = $wizardService;
+    }
+
+    public function step(Request $request)
+    {
+        if ($request->isMethod('POST'))
+            $this->wizardService->putDataInSession($request->all());
+
+        return view('painel.wizard.step-' . $request->step);
+    }
+
+    public function finish()
+    {
+        $this->wizardService->storeFromSession();
+
+        return redirect()->route('home');
     }
 }

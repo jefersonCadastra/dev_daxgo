@@ -17,7 +17,3 @@ use App\Http\Controllers\Auth\AuthController;
 
 // Auth Routes
 Auth::routes();
-
-Route::get('/gera-hash', [AuthController::class, 'geraHash']);
-
-Route::post('/gera-hash', [AuthController::class, 'geraHash']);
