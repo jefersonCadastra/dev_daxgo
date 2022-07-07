@@ -3,12 +3,15 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TesteAnalyticsController;
 
 use App\Http\Controllers\Painel\{
     WizardController,
     GoalController,
     TenantController,
     VisitController,
+    VisitDetailController,
+    VisitOriginController
 };
 
 /*
@@ -35,8 +38,18 @@ Route::middleware('auth')->group(function () {
 
     //Visitas
     Route::resource('visits', VisitController::class);
+
+    //Origem Visitas
+    Route::resource('visitorigin', VisitOriginController::class);
+
+    //Detalhes das Visitas
+    Route::get('visitsdetail/distribute/', [VisitDetailController::class, 'distribute'])->name('visitsdetail.distribute');
+    Route::get('visitsdetail', [VisitDetailController::class, 'index'])->name('visitsdetail');;
 });
+
+
 
 Route::view('/', 'welcome');
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/analytics', [TesteAnalyticsController::class, 'index'])->name('analytics');
