@@ -25,7 +25,7 @@ use App\Http\Controllers\Painel\{
 Route::middleware('auth')->group(function () {
 
     // Wizard
-    Route::get('/wizard/step/{step}', [WizardController::class, 'step'])->name('wizard.step');
+    Route::match(['GET', 'POST'], '/wizard/step/{step}', [WizardController::class, 'step'])->name('wizard.step');
 
     // Clientes (Tenants)
     Route::resource('tenants', TenantController::class);

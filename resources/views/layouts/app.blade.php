@@ -10,14 +10,16 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{{ asset('img/favicon.css') }}">
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 
 <body>
-    <x-layouts.navbar />
-
     <main>
+        @auth
+            <x-layouts.navbar />
+        @endauth
         @yield('content')
     </main>
 
