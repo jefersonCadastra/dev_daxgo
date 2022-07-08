@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Visit;
+use App\Utils\Date;
 
 class VisitService
 {
@@ -31,5 +32,12 @@ class VisitService
     public function delete($id)
     {
         return $this->visit->find($id)->delete();
+    }
+
+    public function findVisit($month, $year)
+    {
+        $visit = $this->visit->where("month", $month)->where("year", $year)->first();
+        $visit->month = Date::monthNumberToFullString($visit->month);
+        return $visit;
     }
 }

@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function () {
 
     // Wizard
     Route::match(['GET', 'POST'], '/wizard/step/{step}', [WizardController::class, 'step'])->name('wizard.step');
+    Route::match(['GET', 'POST'], '/wizard/distribute/', [WizardController::class, 'step'])->name('wizard.distribute');
 
     // Clientes (Tenants)
     Route::resource('tenants', TenantController::class);
@@ -40,7 +41,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('visits', VisitController::class);
 
     //Origem Visitas
-    Route::resource('visitorigin', VisitOriginController::class);
+    Route::post('visitorigin/create', [VisitOriginController::class, 'create']);
+    Route::post('visitorigin/store', [VisitOriginController::class, 'store']);
 
     //Detalhes das Visitas
     Route::get('visitsdetail/distribute/', [VisitDetailController::class, 'distribute'])->name('visitsdetail.distribute');

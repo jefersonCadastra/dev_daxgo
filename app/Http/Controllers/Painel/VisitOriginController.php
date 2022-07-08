@@ -3,24 +3,25 @@
 namespace App\Http\Controllers\Painel;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\VisitRequest;
-use App\Services\VisitService;
+use App\Http\Requests\VisitOriginRequest;
+use App\Services\VisitOriginService;
 use Illuminate\Http\Request;
 
-class VisitController extends Controller
+class VisitOriginController extends Controller
 {
-    private VisitService $visitService;
+
+    private VisitOriginService $visitOriginService;
 
     /**
      * Instance of VisitController
      *
-     * @param VisitService $visitService
+     * @param VisitOriginService $visitOriginService
      *
      * @return void
      */
-    public function __construct(VisitService $visitService)
+    public function __construct(VisitOriginService $visitOriginService)
     {
-        $this->visitService = $visitService;
+        $this->visitOriginService = $visitOriginService;
     }
 
     /**
@@ -30,8 +31,7 @@ class VisitController extends Controller
      */
     public function index()
     {
-        $visits = $this->visitService->all();
-        return view('painel.visits.index', compact('visits'));
+        //
     }
 
     /**
@@ -39,22 +39,24 @@ class VisitController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(VisitOriginRequest $request)
     {
-        //
+        die('Create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \IApp\Http\Requests\VisitRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(VisitRequest $request)
+    public function store(VisitOriginRequest $request)
     {
-        $this->visitService->create($request->all());
+        $data = $request->json()->all();
+        $createdData = $this->visitOriginService->create($data);
 
-        return back();
+        return response()
+            ->json(['newOrigin' => $createdData->id]);
     }
 
     /**
@@ -88,7 +90,7 @@ class VisitController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->visitService->update($request->all(), $id);
+        //
     }
 
     /**
@@ -99,9 +101,6 @@ class VisitController extends Controller
      */
     public function destroy($id)
     {
-        die('Destroy');
-        $this->visitService->delete($id);
-
-        return back();
+        //
     }
 }
