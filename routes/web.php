@@ -11,7 +11,9 @@ use App\Http\Controllers\Painel\{
     TenantController,
     VisitController,
     VisitDetailController,
-    VisitOriginController
+    VisitOriginController,
+    BehaviorDateController,
+    DailyGoalsController
 };
 
 /*
@@ -40,13 +42,20 @@ Route::middleware('auth')->group(function () {
     //Visitas
     Route::resource('visits', VisitController::class);
 
+    //Datas
+    Route::resource('dates', BehaviorDateController::class);
+
     //Origem Visitas
     Route::post('visitorigin/create', [VisitOriginController::class, 'create']);
     Route::post('visitorigin/store', [VisitOriginController::class, 'store']);
 
     //Detalhes das Visitas
     Route::get('visitsdetail/distribute/', [VisitDetailController::class, 'distribute'])->name('visitsdetail.distribute');
-    Route::get('visitsdetail', [VisitDetailController::class, 'index'])->name('visitsdetail');;
+    Route::get('visitsdetail/finish/', [VisitDetailController::class, 'finish'])->name('visitsdetail.finish');
+    Route::get('visitsdetail', [VisitDetailController::class, 'index'])->name('visitsdetail');
+
+    //Metas diárias
+    Route::get('dailygoals', [DailyGoalsController::class, 'index'])->name('dailygoals');
 });
 
 
