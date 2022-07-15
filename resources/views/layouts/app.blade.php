@@ -26,6 +26,8 @@
     </main>
 
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/jquery.mask.js') }}"></script>
+    
 </body>
 
 </html>

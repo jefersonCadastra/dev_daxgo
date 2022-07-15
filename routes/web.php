@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TesteAnalyticsController;
 
 use App\Http\Controllers\Painel\{
     WizardController,
@@ -10,6 +11,8 @@ use App\Http\Controllers\Painel\{
     PerformanceAverageController,
     TenantController,
     VisitController,
+    VisitDetailController,
+    VisitOriginController
 };
 
 /*
@@ -32,6 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::match(['GET', 'POST'], '/wizard/step/4', [WizardController::class, 'step4'])->name('wizard.step.4');
     Route::match(['GET', 'POST'], '/wizard/step/5', [WizardController::class, 'step5'])->name('wizard.step.5');
     Route::match(['GET', 'POST'], '/wizard/finish', [WizardController::class, 'finish'])->name('wizard.finish');
+    Route::match(['GET', 'POST'], '/wizard/distribute', [WizardController::class, 'distribute'])->name('wizard.distribute');
 
     // Clientes (Tenants)
     Route::resource('tenants', TenantController::class);
@@ -44,8 +48,19 @@ Route::middleware('auth')->group(function () {
 
     // Metas de performance
     Route::resource('performance-averages', PerformanceAverageController::class);
+
+    //Origem Visitas
+    Route::post('visitorigin/create', [VisitOriginController::class, 'create']);
+    Route::post('visitorigin/store', [VisitOriginController::class, 'store']);
+
+    //Detalhes das Visitas
+    Route::get('visitsdetail/distribute/', [VisitDetailController::class, 'distribute'])->name('visitsdetail.distribute');
+    Route::get('visitsdetail', [VisitDetailController::class, 'index'])->name('visitsdetail');;
 });
+
+
 
 Route::view('/', 'welcome');
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/analytics', [TesteAnalyticsController::class, 'index'])->name('analytics');
