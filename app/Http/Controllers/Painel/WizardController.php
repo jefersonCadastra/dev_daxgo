@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Painel;
 use App\Http\Controllers\Controller;
 use App\Services\{
     WizardService,
-    visitOriginService,
+    VisitOriginService,
     behaviorDateService
 };
 use Illuminate\Http\Request;
