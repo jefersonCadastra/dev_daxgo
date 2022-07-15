@@ -53,7 +53,7 @@
       <div class="row border-top mt-3 pt-5">
         <div class="col-12">
           <div class="row">
-            <form method="post" action="{{ route('wizard.step', ['step' => 4]) }}">
+            <form method="post" action="{{ route('wizard.step.4') }}">
               <input type="hidden" name='visits' value='{{ $quantity }}'>
               <div class="col-6">
                 Visitas Orgânicas <span class="numVisitas">0</span>
@@ -179,10 +179,10 @@
       </div>
 
       <div class="d-flex justify-content-between mt-4">
-        <a class="btn btn-outline-warning rounded-pill text-uppercase me-auto" href="{{ route('wizard.step', ['step' => 2]) }}">
+        <a class="btn btn-outline-warning rounded-pill text-uppercase me-auto" href="{{ route('wizard.step.2') }}">
           Voltar
         </a>
-        <!-- <a class="btn btn-outline-warning rounded-pill text-uppercase ms-auto" href="{{ route('wizard.step', ['step' => 4]) }}">
+        <!-- <a class="btn btn-outline-warning rounded-pill text-uppercase ms-auto" href="{{ route('wizard.step.4', ['step' => 4]) }}">
           Avançar
         </a> -->
       </div>

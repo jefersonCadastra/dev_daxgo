@@ -66,7 +66,7 @@
         </table>
       </div>
       <div class="d-flex justify-content-between">
-        <a class="btn btn-outline-warning rounded-pill text-uppercase me-auto" href="{{ route('wizard.step', ['step' => 5]) }}">
+        <a class="btn btn-outline-warning rounded-pill text-uppercase me-auto" href="{{ route('wizard.step.5', ['step' => 5]) }}">
           Voltar
         </a>
         <a class="btn btn-outline-warning rounded-pill text-uppercase me-auto" href="{{ route('visitsdetail.finish') }}">
