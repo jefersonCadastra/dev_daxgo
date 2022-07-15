@@ -54,6 +54,7 @@
         <div class="col-12">
           <div class="row">
             <form method="post" action="{{ route('wizard.step', ['step' => 4]) }}">
+              <input type="hidden" name='visits' value='{{ $quantity }}'>
               <div class="col-6">
                 Visitas Orgânicas <span class="numVisitas">0</span>
 
