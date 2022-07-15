@@ -16,4 +16,13 @@ class VisitOrigin extends Model
     {
         return $this->belongsTo(Tenant::class);
     }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        self::creating(function (Model $model) {
+            $model->setAttribute('tenant_id', Tenant::first()->id);
+        });
+    }
 }
