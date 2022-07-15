@@ -16,6 +16,7 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
+        "maatwebsite/excel": "^3.1",
         "php-flasher/flasher-noty-laravel": "^1.7",
         "php-flasher/flasher-notyf-laravel": "^1.7",
         "php-flasher/flasher-pnotify-laravel": "^1.7",

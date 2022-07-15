@@ -9,7 +9,7 @@
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 @auth
                     <li class="nav-item">
-                        <a href="{{ route('wizard.step', ['step' => 1]) }}" class="nav-link">
+                        <a href="{{ route('wizard.step.1') }}" class="nav-link text-uppercase">
                             Wizard
                         </a>
                     </li>

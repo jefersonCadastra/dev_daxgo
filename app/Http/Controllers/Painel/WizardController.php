@@ -16,19 +16,53 @@ class WizardController extends Controller
         $this->wizardService = $wizardService;
     }
 
-    public function step(Request $request)
+    public function step1(Request $request)
     {
         if ($request->isMethod('POST'))
             $this->wizardService->putDataInSession($request->all());
 
-        if ($request->step == 3)
-            return redirect()->route('visitsdetail.distribute');
-
-        return view('painel.wizard.step-' . $request->step);
+        return view('painel.wizard.step-1');
     }
 
-    public function finish()
+    public function step2(Request $request)
     {
+        if ($request->isMethod('POST'))
+            $this->wizardService->putDataInSession($request->all());
+
+        return view('painel.wizard.step-2');
+    }
+
+    public function step3(Request $request)
+    {
+        if ($request->isMethod('POST'))
+            $this->wizardService->putDataInSession($request->all());
+
+        return view('painel.wizard.step-3');
+    }
+
+    public function step4(Request $request)
+    {
+        if ($request->isMethod('POST')) {
+            dd($request->all());
+            $this->wizardService->putDataInSession($request->all());
+        }
+
+        return view('painel.wizard.step-4');
+    }
+
+    public function step5(Request $request)
+    {
+        if ($request->isMethod('POST'))
+            $this->wizardService->putDataInSession($request->all());
+
+        return view('painel.wizard.step-5');
+    }
+
+    public function finish(Request $request)
+    {
+        if ($request->isMethod('POST'))
+            $this->wizardService->putDataInSession($request->all());
+
         $this->wizardService->storeFromSession();
 
         return redirect()->route('home');

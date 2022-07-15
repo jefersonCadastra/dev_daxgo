@@ -3,23 +3,23 @@
 namespace App\Http\Controllers\Painel;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\VisitRequest;
-use App\Services\VisitService;
+use App\Services\PerformanceAverageService;
+use Illuminate\Http\Request;
 
-class VisitController extends Controller
+class PerformanceAverageController extends Controller
 {
-    private VisitService $visitService;
+    private PerformanceAverageService $performanceAverageService;
 
     /**
-     * Instance of VisitController
+     * Instance of PerformanceAverageController
      *
-     * @param VisitService $visitService
+     * @param PerformanceAverageService $performanceAverageService
      *
      * @return void
      */
-    public function __construct(VisitService $visitService)
+    public function __construct(PerformanceAverageService $performanceAverageService)
     {
-        $this->visitService = $visitService;
+        $this->performanceAverageService = $performanceAverageService;
     }
 
     /**
@@ -29,8 +29,9 @@ class VisitController extends Controller
      */
     public function index()
     {
-        $visits = $this->visitService->all();
-        return view('painel.visits.index', compact('visits'));
+        $performanceAverages = $this->performanceAverageService->all();
+
+        return view('painel.perfomance-averages.index', compact('performanceAverages'));
     }
 
     /**
@@ -46,12 +47,12 @@ class VisitController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\VisitRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(VisitRequest $request)
+    public function store(Request $request)
     {
-        $this->visitService->create($request->all());
+        $this->performanceAverageService->create($request->all());
 
         return back();
     }
@@ -81,13 +82,13 @@ class VisitController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\VisitRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(VisitRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $this->visitService->update($request->all(), $id);
+        $this->performanceAverageService->update($request->all(), $id);
 
         return back();
     }
@@ -100,8 +101,7 @@ class VisitController extends Controller
      */
     public function destroy($id)
     {
-        die('Destroy');
-        $this->visitService->delete($id);
+        $this->performanceAverageService->delete($id);
 
         return back();
     }
