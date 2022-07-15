@@ -18,6 +18,7 @@ class CreateVisitOriginsTable extends Migration
             $table->foreignId('tenant_id')->constrained();
             $table->string('title');
             $table->string('description')->nullable();
+            $table->enum('paid', ['S', 'N'])->comment('S - Sim (Patrocinada) | N - Não (Orgânica)');
             $table->timestamps();
         });
     }

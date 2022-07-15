@@ -18,8 +18,7 @@ class CreateVisitDetailsTable extends Migration
             $table->foreignId('visit_id')->constrained();
             $table->integer('quantity')->unsigned()->default(0);
             $table->smallInteger('origin')->unsigned()->default(0);
-            $table->enum('paid', ['S', 'N'])->comment('S - Sim (Patrocinada) | N - Não (Orgânica)');
-            $table->decimal('cpc')->unsigned()->default(0);
+            $table->decimal('cpc')->nullable();
             $table->timestamps();
         });
     }
