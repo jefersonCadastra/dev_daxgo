@@ -19,7 +19,7 @@ class WizardController extends Controller
     public function step1(Request $request)
     {
         if ($request->isMethod('POST'))
-            $this->wizardService->putDataInSession($request->validated());
+            $this->wizardService->putDataInSession($request->all());
 
         return view('painel.wizard.step-1');
     }
@@ -27,7 +27,7 @@ class WizardController extends Controller
     public function step2(Request $request)
     {
         if ($request->isMethod('POST'))
-            $this->wizardService->putDataInSession($request->validated());
+            $this->wizardService->putDataInSession($request->all());
 
         return view('painel.wizard.step-2');
     }
@@ -35,7 +35,7 @@ class WizardController extends Controller
     public function step3(Request $request)
     {
         if ($request->isMethod('POST'))
-            $this->wizardService->putDataInSession($request->validated());
+            $this->wizardService->putDataInSession($request->all());
 
         return view('painel.wizard.step-3');
     }
@@ -44,7 +44,7 @@ class WizardController extends Controller
     {
         if ($request->isMethod('POST')) {
             dd($request->all());
-            $this->wizardService->putDataInSession($request->validated());
+            $this->wizardService->putDataInSession($request->all());
         }
 
         return view('painel.wizard.step-4');
@@ -53,7 +53,7 @@ class WizardController extends Controller
     public function step5(Request $request)
     {
         if ($request->isMethod('POST'))
-            $this->wizardService->putDataInSession($request->validated());
+            $this->wizardService->putDataInSession($request->all());
 
         return view('painel.wizard.step-5');
     }
@@ -61,7 +61,7 @@ class WizardController extends Controller
     public function finish(Request $request)
     {
         if ($request->isMethod('POST'))
-            $this->wizardService->putDataInSession($request->validated());
+            $this->wizardService->putDataInSession($request->all());
 
         $this->wizardService->storeFromSession();
 

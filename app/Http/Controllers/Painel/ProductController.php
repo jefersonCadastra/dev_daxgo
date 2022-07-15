@@ -43,7 +43,7 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        $this->productService->create($request->validated());
+        $this->productService->create($request->all());
 
         return back();
     }
@@ -79,7 +79,7 @@ class ProductController extends Controller
      */
     public function update(ProductRequest $request, $id)
     {
-        $this->productService->update($request->validated(), $id);
+        $this->productService->update($request->all(), $id);
 
         return back();
     }

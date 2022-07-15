@@ -51,7 +51,7 @@ class VisitController extends Controller
      */
     public function store(VisitRequest $request)
     {
-        $this->visitService->create($request->validated());
+        $this->visitService->create($request->all());
 
         return back();
     }
@@ -87,7 +87,7 @@ class VisitController extends Controller
      */
     public function update(VisitRequest $request, $id)
     {
-        $this->visitService->update($request->validated(), $id);
+        $this->visitService->update($request->all(), $id);
 
         return back();
     }
