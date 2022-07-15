@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Services\{
     WizardService,
     VisitOriginService,
-    behaviorDateService
+    BehaviorDateService
 };
 use Illuminate\Http\Request;
 use App\Utils\LDCalculator;
