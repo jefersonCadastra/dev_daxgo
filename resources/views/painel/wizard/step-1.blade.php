@@ -2,7 +2,8 @@
 
 @section('content')
     <div class="container">
-        <form method="post" action="{{ route('wizard.step', ['step' => 2]) }}">
+        <form method="post" action="{{ route('wizard.step.2') }}">
+            @csrf
             <div class="row mt-5 bg-light border p-4 mb-3">
                 <div class="col-lg-6 offset-lg-3">
                     <h5>Qual a sua meta em</h5>
@@ -34,6 +35,5 @@
                 </button>
             </div>
         </form>
-
     </div>
 @endsection

@@ -33,6 +33,6 @@ class WizardService
 
         // Chamar os services que irão persistir os dados
 
-        var_dump($data);
+        dd($data);
     }
 }

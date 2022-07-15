@@ -8,10 +8,10 @@
             </div>
         </div>
         <div class="d-flex justify-content-between">
-            <a class="btn btn-outline-warning rounded-pill text-uppercase me-auto" href="{{ route('wizard.step', ['step' => 2]) }}">
+            <a class="btn btn-outline-warning rounded-pill text-uppercase me-auto" href="{{ route('wizard.step.2') }}">
                 Voltar
             </a>
-            <a class="btn btn-outline-warning rounded-pill text-uppercase ms-auto" href="{{ route('wizard.step', ['step' => 4]) }}">
+            <a class="btn btn-outline-warning rounded-pill text-uppercase ms-auto" href="{{ route('wizard.step.4') }}">
                 Avançar
             </a>
         </div>

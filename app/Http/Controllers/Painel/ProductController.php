@@ -3,23 +3,16 @@
 namespace App\Http\Controllers\Painel;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\VisitRequest;
-use App\Services\VisitService;
+use App\Http\Requests\ProductRequest;
+use App\Services\ProductService;
 
-class VisitController extends Controller
+class ProductController extends Controller
 {
-    private VisitService $visitService;
+    private $productService;
 
-    /**
-     * Instance of VisitController
-     *
-     * @param VisitService $visitService
-     *
-     * @return void
-     */
-    public function __construct(VisitService $visitService)
+    public function __construct(ProductService $productService)
     {
-        $this->visitService = $visitService;
+        $this->productService = $productService;
     }
 
     /**
@@ -29,9 +22,7 @@ class VisitController extends Controller
      */
     public function index()
     {
-        $visits = $this->visitService->all();
-
-        dd($visits);
+        dd($this->productService->all());
     }
 
     /**
@@ -47,12 +38,12 @@ class VisitController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\VisitRequest  $request
+     * @param  \App\Http\Requests\ProductRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(VisitRequest $request)
+    public function store(ProductRequest $request)
     {
-        $this->visitService->create($request->validated());
+        $this->productService->create($request->validated());
 
         return back();
     }
@@ -82,13 +73,13 @@ class VisitController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\VisitRequest  $request
+     * @param  \App\Http\Requests\ProductRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(VisitRequest $request, $id)
+    public function update(ProductRequest $request, $id)
     {
-        $this->visitService->update($request->validated(), $id);
+        $this->productService->update($request->validated(), $id);
 
         return back();
     }
@@ -101,7 +92,7 @@ class VisitController extends Controller
      */
     public function destroy($id)
     {
-        $this->visitService->delete($id);
+        $this->productService->delete($id);
 
         return back();
     }
