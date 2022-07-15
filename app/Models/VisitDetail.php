@@ -9,6 +9,16 @@ class VisitDetail extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['quantity', 'origin', 'paid', 'cpc'];
+    protected $fillable = ['visit_id', 'quantity', 'origin', 'cpc'];
 
+    protected $nullable = [
+        'cpc'
+    ];
+
+    protected $with = ['visit'];
+
+    public function visit()
+    {
+        return $this->belongsTo(Visit::class);
+    }
 }

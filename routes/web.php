@@ -36,6 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::match(['GET', 'POST'], '/wizard/step/3', [WizardController::class, 'step3'])->name('wizard.step.3');
     Route::match(['GET', 'POST'], '/wizard/step/4', [WizardController::class, 'step4'])->name('wizard.step.4');
     Route::match(['GET', 'POST'], '/wizard/step/5', [WizardController::class, 'step5'])->name('wizard.step.5');
+    Route::match(['GET', 'POST'], '/wizard/step/6', [WizardController::class, 'step6'])->name('wizard.step.6');
     Route::match(['GET', 'POST'], '/wizard/finish', [WizardController::class, 'finish'])->name('wizard.finish');
     Route::match(['GET', 'POST'], '/wizard/distribute', [WizardController::class, 'distribute'])->name('wizard.distribute');
 
@@ -59,11 +60,10 @@ Route::middleware('auth')->group(function () {
     Route::post('visitorigin/store', [VisitOriginController::class, 'store']);
 
     //Detalhes das Visitas
-    Route::get('visitsdetail/distribute', [VisitDetailController::class, 'distribute'])->name('visitsdetail.distribute');
     Route::get('visitsdetail/finish/', [VisitDetailController::class, 'finish'])->name('visitsdetail.finish');
     Route::get('visitsdetail', [VisitDetailController::class, 'index'])->name('visitsdetail');
 
-    //Metas diárias
+    //Metas diÃ¡rias
     Route::get('dailygoals', [DailyGoalsController::class, 'index'])->name('dailygoals');
 });
 

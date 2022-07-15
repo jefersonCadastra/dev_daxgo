@@ -5,7 +5,7 @@ namespace App\Utils;
 class Date
 {
   /**
-   * Instance of VisitController
+   * 
    *
    * @param $month - number 1, 2, 3
    *
@@ -33,7 +33,7 @@ class Date
   }
 
   /**
-   * Instance of VisitController
+   * 
    *
    * @param $month - number 1, 2, 3...
    *
@@ -58,5 +58,68 @@ class Date
     ];
 
     return $listMonth[$month];
+  }
+
+  /**
+   * 
+   *
+   * @param $month - number 1, 2, 3...
+   * @param $year - number yyyy
+   *
+   * @return string - Last day of month
+   */
+  public static function lastDayOfMonth($month, $year)
+  {
+    $date = "$year-$month-1";
+    $lastDay = date("Y-m-t", strtotime($date));
+    return $lastDay;
+  }
+
+  /**
+   * Converts the day of the week in the ISO-8601 representation, 
+   * to the full format in abbreviated ptBr
+   *
+   * @param $day - number 1, 2, 3 (php date day of the week format, ISO-8601)
+   *
+   * @return string - Last day of month
+   */
+  public static function stringDayOfWeek($day, $full = false)
+  {
+    $dayList = [
+      '1' => 'Seg',
+      '2' => 'Ter',
+      '3' => 'Qua',
+      '4' => 'Qui',
+      '5' => 'Sex',
+      '6' => 'Sab',
+      '7' => 'Dom',
+    ];
+
+    $dayListFull = [
+      '1' => 'Segunda',
+      '2' => 'Terça',
+      '3' => 'Quarta',
+      '4' => 'Quinta',
+      '5' => 'Sexta',
+      '6' => 'Sábado',
+      '7' => 'Domingo',
+    ];
+
+    if ($full)
+      return $dayListFull[$day];
+    else
+      return $dayList[$day];
+  }
+
+  /**
+   * Receives a date and returns the day of the week in full, in full or abbreviated format
+   *
+   * @param string date
+   *
+   */
+  public static function dayOfWeek($date)
+  {
+    $dayOfWeek = date("N", strtotime($date));
+    return (new self)->stringDayOfWeek($dayOfWeek, false);
   }
 }

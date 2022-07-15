@@ -12,7 +12,7 @@
             Voltar
         </a>
 
-        <a class="btn btn-outline-warning rounded-pill text-uppercase me-auto" href="{{ route('dates.index') }}">
+        <a class="btn btn-outline-warning rounded-pill text-uppercase me-auto" href="{{ route('wizard.step.6') }}">
             Avançar
         </a>
 

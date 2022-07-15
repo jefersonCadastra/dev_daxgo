@@ -130,7 +130,5 @@ class WizardService
 
         // Chamar os services que irão persistir os dados
         //$dataSession = session()->forget('wizard');
-
-        dd($dataSession);
     }
 }
