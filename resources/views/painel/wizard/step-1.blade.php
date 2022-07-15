@@ -8,7 +8,7 @@
             <li class="breadcrumb-item active" aria-current="page">Definição de meta</li>
         </ol>
     </nav>
-    <form method="post" action="{{ route('wizard.step', ['step' => 2]) }}">
+    <form method="post" action="{{ route('wizard.step.2') }}">
         <div class="row boxContent align-items-center">
             <div class="col-lg-6">
                 <h2 class="mb-4">Qual a sua meta em</h2>
