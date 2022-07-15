@@ -54,7 +54,7 @@ Route::middleware('auth')->group(function () {
     Route::post('visitorigin/store', [VisitOriginController::class, 'store']);
 
     //Detalhes das Visitas
-    Route::get('visitsdetail/distribute/', [VisitDetailController::class, 'distribute'])->name('visitsdetail.distribute');
+    Route::get('visitsdetail/distribute', [VisitDetailController::class, 'distribute'])->name('visitsdetail.distribute');
     Route::get('visitsdetail', [VisitDetailController::class, 'index'])->name('visitsdetail');;
 });
 
